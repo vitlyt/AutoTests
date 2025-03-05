@@ -1,0 +1,5 @@
+{
+  "operationName": "SeekerResumes",
+  "variables": {},
+  "query": "query SeekerResumes {\n  seekerResumes {\n    ...SeekerResumesInfo\n    __typename\n  }\n}\n\nfragment SeekerResumesInfo on ProfResume {\n  similarVacanciesCount\n  personal {\n    photoUrl\n    __typename\n  }\n  city {\n    id\n    __typename\n  }\n  id\n  resumeFilling {\n    percentage\n    __typename\n  }\n  title\n  views {\n    totalCount\n    __typename\n  }\n  updateDate\n  state {\n    ...ResumeState\n    __typename\n  }\n  __typename\n}\n\nfragment ResumeState on ResumeState {\n  state\n  availabilityState\n  isAnonymous\n  privacySettings {\n    hasHiddenPhones\n    __typename\n  }\n  isBannedByModerator\n  hiddenCompanies {\n    name\n    __typename\n  }\n  __typename\n}\n"
+}

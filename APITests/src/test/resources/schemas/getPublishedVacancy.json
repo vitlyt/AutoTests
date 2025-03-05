@@ -1,0 +1,617 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "publishedVacancy": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "anonymous": {
+              "type": "boolean"
+            },
+            "city": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "__typename"
+              ]
+            },
+            "company": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "logoUrl": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "isVerified": {
+                  "type": "boolean"
+                },
+                "companyUrl": {
+                  "type": "string"
+                },
+                "miniProfile": {
+                  "type": "object",
+                  "properties": {
+                    "isEnabled": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "years": {
+                      "type": "number"
+                    },
+                    "benefits": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "__typename": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "id",
+                          "__typename"
+                        ]
+                      }
+                    },
+                    "staffSize": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "__typename": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "__typename"
+                      ]
+                    },
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "isEnabled",
+                    "description",
+                    "images",
+                    "years",
+                    "benefits",
+                    "staffSize",
+                    "__typename"
+                  ]
+                },
+                "honors": {
+                  "type": "array",
+                  "items": {}
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "logoUrl",
+                "name",
+                "isVerified",
+                "companyUrl",
+                "miniProfile",
+                "honors",
+                "__typename"
+              ]
+            },
+            "salary": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "amountFrom": {
+                  "type": "number"
+                },
+                "amountTo": {
+                  "type": "number"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "comment",
+                "amount",
+                "amountFrom",
+                "amountTo",
+                "__typename"
+              ]
+            },
+            "isPublicationInAllCities": {
+              "type": "boolean"
+            },
+            "sortDateText": {
+              "type": "string"
+            },
+            "sortDate": {
+              "type": "string"
+            },
+            "address": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "district": {},
+                "metro": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "__typename"
+                  ]
+                },
+                "longitude": {
+                  "type": "number"
+                },
+                "latitude": {
+                  "type": "number"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "district",
+                "metro",
+                "longitude",
+                "latitude",
+                "__typename"
+              ]
+            },
+            "distanceText": {
+              "type": "string"
+            },
+            "badges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "number"
+                  },
+                  "__typename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "id",
+                  "__typename"
+                ]
+              }
+            },
+            "description": {
+              "type": "string"
+            },
+            "fullDescription": {
+              "type": "string"
+            },
+            "contacts": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "phones": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "photo": {},
+                "socials": {
+                  "type": "array",
+                  "items": {}
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "phones",
+                "photo",
+                "socials",
+                "__typename"
+              ]
+            },
+            "seekerDisliked": {
+              "type": ["object", "null"],
+              "properties": {
+                "isDisliked": {
+                  "type": "boolean"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "isDisliked",
+                "__typename"
+              ]
+            },
+            "seekerFavorite": {
+              "type": ["object", "null"],
+              "properties": {
+                "isFavorite": {
+                  "type": "boolean"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "isFavorite",
+                "__typename"
+              ]
+            },
+            "seekerApplication": {
+              "type": ["object", "null"],
+              "properties": {
+                "isApplied": {
+                  "type": "boolean"
+                },
+                "lastTimeAppliedAt": {},
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "isApplied",
+                "lastTimeAppliedAt",
+                "__typename"
+              ]
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "hasDesign": {
+              "type": "boolean"
+            },
+            "designType": {
+              "type": "number"
+            },
+            "design": {
+              "type": "object",
+              "properties": {
+                "headerInfo": {
+                  "type": "object",
+                  "properties": {
+                    "mediaItems": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "videoCoverImageUrl": {},
+                          "__typename": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url",
+                          "videoCoverImageUrl",
+                          "__typename"
+                        ]
+                      }
+                    },
+                    "videoPlayButtonImageUrl": {},
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "mediaItems",
+                    "videoPlayButtonImageUrl",
+                    "__typename"
+                  ]
+                },
+                "__typename": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "backgroundHtml": {
+                  "type": "string"
+                },
+                "footerInfo": {
+                  "type": "object",
+                  "properties": {
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "imageUrl",
+                    "__typename"
+                  ]
+                }
+              },
+              "required": [
+                "headerInfo",
+                "__typename",
+                "id",
+                "backgroundHtml",
+                "footerInfo"
+              ]
+            },
+            "branch": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "__typename"
+              ]
+            },
+            "schedules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "__typename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "__typename"
+                ]
+              }
+            },
+            "hot": {
+              "type": "boolean"
+            },
+            "media": {
+              "type": "array",
+              "items": {}
+            },
+            "keyTagGroups": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "__typename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "id",
+                  "__typename"
+                ]
+              }
+            },
+            "__typename": {
+              "type": "string"
+            },
+            "supportApplicationWithoutResume": {
+              "type": "boolean"
+            },
+            "formApplyCustomUrl": {
+              "type": "string"
+            },
+            "publicationType": {
+              "type": "string"
+            },
+            "languageQuestions": {
+              "type": "array",
+              "items": {}
+            },
+            "candidatesScreening": {
+              "type": "object",
+              "properties": {
+                "questionnaire": {},
+                "isEnabled": {
+                  "type": "boolean"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "questionnaire",
+                "isEnabled",
+                "__typename"
+              ]
+            },
+            "experienceQuestions": {
+              "type": "array",
+              "items": {}
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "anonymous",
+            "city",
+            "company",
+            "salary",
+            "isPublicationInAllCities",
+            "sortDateText",
+            "sortDate",
+            "address",
+            "distanceText",
+            "badges",
+            "description",
+            "fullDescription",
+            "contacts",
+            "seekerDisliked",
+            "seekerFavorite",
+            "seekerApplication",
+            "isActive",
+            "hasDesign",
+            "designType",
+            "design",
+            "branch",
+            "schedules",
+            "hot",
+            "media",
+            "keyTagGroups",
+            "__typename",
+            "supportApplicationWithoutResume",
+            "formApplyCustomUrl",
+            "publicationType",
+            "languageQuestions",
+            "candidatesScreening",
+            "experienceQuestions",
+            "status"
+          ]
+        }
+      },
+      "required": [
+        "publishedVacancy"
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "valueCompletion": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "path": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "extensions": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            },
+            "required": [
+              "message",
+              "path",
+              "extensions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "valueCompletion"
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "extensions"
+  ]
+}

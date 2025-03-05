@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Main">
+    <test name="Auth">
+        <classes>
+            <class name="main.AuthTest"/>
+        </classes>
+    </test>
+
+    <test name="Common">
+        <classes>
+            <class name="main.CommonNegativeTests"/>
+        </classes>
+    </test>
+
+    <test name="Main">
+
+        <classes>
+            <class name="main.SeekerResumesTest"/>
+            <class name="main.SearchVacanciesTest"/>
+        </classes>
+
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

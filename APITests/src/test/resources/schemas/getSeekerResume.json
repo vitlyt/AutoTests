@@ -1,0 +1,277 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "seekerResume": {
+          "type": "object",
+          "properties": {
+            "personal": {
+              "type": "object",
+              "properties": {
+                "surName": {
+                  "type": "string"
+                },
+                "photoUrl": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "fatherName": {
+                  "type": "string"
+                },
+                "birthDate": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "number"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "surName",
+                "photoUrl",
+                "gender",
+                "firstName",
+                "fatherName",
+                "birthDate",
+                "age",
+                "__typename"
+              ]
+            },
+            "relocationCities": {
+              "type": "array",
+              "items": {}
+            },
+            "city": {
+              "type": "object",
+              "properties": {
+                "ua": {
+                  "type": "string"
+                },
+                "ru": {
+                  "type": "string"
+                },
+                "regionName": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ua",
+                "ru",
+                "regionName",
+                "name",
+                "id",
+                "__typename"
+              ]
+            },
+            "cityDistricts": {
+              "type": "array",
+              "items": {}
+            },
+            "contacts": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "phone": {},
+                "phones": {
+                  "type": "array",
+                  "items": {}
+                },
+                "portfolios": {
+                  "type": "array",
+                  "items": {}
+                },
+                "socials": {
+                  "type": "array",
+                  "items": {}
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "email",
+                "phone",
+                "phones",
+                "portfolios",
+                "socials",
+                "__typename"
+              ]
+            },
+            "schedules": {
+              "type": "array",
+              "items": {}
+            },
+            "salary": {
+              "type": "object",
+              "properties": {
+                "currency": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "currency",
+                "amount",
+                "__typename"
+              ]
+            },
+            "title": {
+              "type": "string"
+            },
+            "__typename": {
+              "type": "string"
+            },
+            "experiences": {
+              "type": "array",
+              "items": {}
+            },
+            "educations": {
+              "type": "array",
+              "items": {}
+            },
+            "languageSkills": {
+              "type": "array",
+              "items": {}
+            },
+            "additionalEducations": {
+              "type": "array",
+              "items": {}
+            },
+            "additionals": {
+              "type": "array",
+              "items": {}
+            },
+            "updateDate": {
+              "type": "string"
+            },
+            "state": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string"
+                },
+                "availabilityState": {
+                  "type": "string"
+                },
+                "banInfo": {
+                  "type": "object",
+                  "properties": {
+                    "banReason": {},
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "banReason",
+                    "__typename"
+                  ]
+                },
+                "hiddenCompanies": {
+                  "type": "array",
+                  "items": {}
+                },
+                "searchState": {
+                  "type": "string"
+                },
+                "isAnonymous": {
+                  "type": "boolean"
+                },
+                "isAllowedToShareWithPartners": {
+                  "type": "boolean"
+                },
+                "privacySettings": {
+                  "type": "object",
+                  "properties": {
+                    "hasHiddenPhones": {
+                      "type": "boolean"
+                    },
+                    "__typename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hasHiddenPhones",
+                    "__typename"
+                  ]
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "state",
+                "availabilityState",
+                "banInfo",
+                "hiddenCompanies",
+                "searchState",
+                "isAnonymous",
+                "isAllowedToShareWithPartners",
+                "privacySettings",
+                "__typename"
+              ]
+            },
+            "skills": {
+              "type": "string"
+            },
+            "diiaCertificate": {},
+            "resumeFilling": {}
+          },
+          "required": [
+            "personal",
+            "relocationCities",
+            "city",
+            "cityDistricts",
+            "contacts",
+            "schedules",
+            "salary",
+            "title",
+            "__typename",
+            "experiences",
+            "educations",
+            "languageSkills",
+            "additionalEducations",
+            "additionals",
+            "updateDate",
+            "state",
+            "skills",
+            "diiaCertificate",
+            "resumeFilling"
+          ]
+        }
+      },
+      "required": [
+        "seekerResume"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

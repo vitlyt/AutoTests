@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "deleteSeekerProfResume": {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "__typename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "__typename"
+                ]
+              }
+            },
+            "__typename": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "errors",
+            "__typename"
+          ]
+        }
+      },
+      "required": [
+        "deleteSeekerProfResume"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

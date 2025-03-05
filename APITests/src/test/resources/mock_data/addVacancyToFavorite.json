@@ -1,0 +1,7 @@
+{
+  "operationName": "addVacancyToFavorite",
+  "variables": {
+    "vacancyId": "9956677"
+  },
+  "query": "mutation addVacancyToFavorite($vacancyId: ID!) {\n  seekerFavoriteVacancies {\n    add(input: {vacancyIds: [$vacancyId]}) {\n      vacancies {\n        id\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

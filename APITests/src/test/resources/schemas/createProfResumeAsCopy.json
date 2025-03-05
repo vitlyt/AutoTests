@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "createProfResumeAsCopy": {
+          "type": "object",
+          "properties": {
+            "errors": {},
+            "profResume": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "__typename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "__typename"
+              ]
+            },
+            "__typename": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "errors",
+            "profResume",
+            "__typename"
+          ]
+        }
+      },
+      "required": [
+        "createProfResumeAsCopy"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

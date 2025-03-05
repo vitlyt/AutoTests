@@ -1,0 +1,13 @@
+{
+  "operationName": "UpdateSeekerProfResumePosition",
+  "variables": {
+    "input": {
+      "position": "$position",
+      "resumeId": "$id"
+    }
+  },
+  "query": "mutation UpdateSeekerProfResumePosition($input: ProfResumePositionInput!) {\n  updateSeekerProfResumePosition(input: $input) {\n    errors {\n      ... on ProfResumeDoesNotExist {\n        message\n        __typename\n      }\n      ... on ProfResumeDoesNotBelongToSeeker {\n        message\n        __typename\n      }\n      ... on ProfResumeDuplicated {\n        message\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+}
+
+
+

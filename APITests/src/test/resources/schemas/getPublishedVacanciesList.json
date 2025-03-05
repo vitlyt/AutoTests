@@ -1,0 +1,287 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "publishedVacancies": {
+          "type": "object",
+          "properties": {
+            "totalCount": {
+              "type": "number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "schedules": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "__typename": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "__typename"
+                      ]
+                    }
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "distanceText": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "sortDateText": {
+                    "type": "string"
+                  },
+                  "hot": {
+                    "type": "boolean"
+                  },
+                  "designBannerUrl": {
+                    "type": ["string", "null"]
+                  },
+                  "isPublicationInAllCities": {
+                    "type": "boolean"
+                  },
+                  "badges": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "__typename": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "__typename"
+                      ]
+                    }
+                  },
+                  "salary": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      },
+                      "comment": {
+                        "type": "string"
+                      },
+                      "amountFrom": {
+                        "type": "number"
+                      },
+                      "amountTo": {
+                        "type": "number"
+                      },
+                      "__typename": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "comment",
+                      "amountFrom",
+                      "amountTo",
+                      "__typename"
+                    ]
+                  },
+                  "company": {
+                    "type": ["object", "null"],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "logoUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "honors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "badge": {
+                              "type": "object",
+                              "properties": {
+                                "iconUrl": {
+                                  "type": "string"
+                                },
+                                "tooltipDescription": {
+                                  "type": "string"
+                                },
+                                "locations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "isFavorite": {
+                                  "type": "boolean"
+                                },
+                                "__typename": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "iconUrl",
+                                "tooltipDescription",
+                                "locations",
+                                "isFavorite",
+                                "__typename"
+                              ]
+                            },
+                            "__typename": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "badge",
+                            "__typename"
+                          ]
+                        }
+                      },
+                      "__typename": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "logoUrl",
+                      "name",
+                      "honors",
+                      "__typename"
+                    ]
+                  },
+                  "city": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "__typename": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "__typename"
+                    ]
+                  },
+                  "showProfile": {
+                    "type": "boolean"
+                  },
+                  "seekerFavorite": {
+                    "type": ["object", "string", "null"],
+                    "properties": {
+                      "isFavorite": {
+                        "type": "boolean"
+                      },
+                      "__typename": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "isFavorite",
+                      "__typename"
+                    ]
+                  },
+                  "seekerDisliked": {
+                    "type": ["object", "string", "null"],
+                    "properties": {
+                      "isDisliked": {
+                        "type": "boolean"
+                      },
+                      "__typename": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "isDisliked",
+                      "__typename"
+                    ]
+                  },
+                  "formApplyCustomUrl": {
+                    "type": "string"
+                  },
+                  "anonymous": {
+                    "type": "boolean"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  },
+                  "publicationType": {
+                    "type": "string"
+                  },
+                  "__typename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "schedules",
+                  "title",
+                  "distanceText",
+                  "description",
+                  "sortDateText",
+                  "hot",
+                  "isPublicationInAllCities",
+                  "badges",
+                  "salary",
+                  "company",
+                  "city",
+                  "showProfile",
+                  "seekerFavorite",
+                  "seekerDisliked",
+                  "formApplyCustomUrl",
+                  "anonymous",
+                  "isActive",
+                  "publicationType",
+                  "__typename"
+                ]
+              }
+            },
+            "__typename": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "totalCount",
+            "items",
+            "__typename"
+          ]
+        }
+      },
+      "required": [
+        "publishedVacancies"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

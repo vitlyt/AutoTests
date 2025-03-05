@@ -1,0 +1,13 @@
+{
+  "operationName": "UpdateSeekerProfResumeSalary",
+  "variables": {
+    "input": {
+      "salary": {
+        "amount": $salary,
+        "currency": "$currency"
+      },
+      "resumeId": "$id"
+    }
+  },
+  "query": "mutation UpdateSeekerProfResumeSalary($input: ProfResumeUpdateSalaryInput!) {\n  updateSeekerProfResumeSalary(input: $input) {\n    errors {\n      ... on ProfResumeDoesNotExist {\n        message\n        __typename\n      }\n      ... on ProfResumeDoesNotBelongToSeeker {\n        message\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

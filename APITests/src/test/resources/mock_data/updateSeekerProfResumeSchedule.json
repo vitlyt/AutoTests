@@ -1,0 +1,13 @@
+{
+  "operationName": "UpdateSeekerProfResumeSchedule",
+  "variables": {
+    "input": {
+      "scheduleIds": [
+        $scheduleId1,
+        $scheduleId2
+      ],
+      "resumeId": "$id"
+    }
+  },
+  "query": "mutation UpdateSeekerProfResumeSchedule($input: ProfResumeScheduleInput!) {\n  updateSeekerProfResumeSchedule(input: $input) {\n    errors {\n      ... on ProfResumeDoesNotExist {\n        message\n        __typename\n      }\n      ... on ProfResumeDoesNotBelongToSeeker {\n        message\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+}
