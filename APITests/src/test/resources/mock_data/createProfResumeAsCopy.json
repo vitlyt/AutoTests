@@ -1,9 +1,5 @@
 {
   "operationName": "CreateProfResumeAsCopy",
-  "variables": {
-    "input": {
-      "resumeId": "17383405"
-    }
-  },
+  "resumeId": "17383405",
   "query": "mutation CreateProfResumeAsCopy($input: CreateAsCopyProfResumeInput!) {\n  createProfResumeAsCopy(input: $input) {\n    errors {\n      ... on ProfResumeDoesNotBelongToSeeker {\n        message\n        __typename\n      }\n      __typename\n    }\n    profResume {\n      id\n      __typename\n    }\n    __typename\n  }\n}\n"
 }

@@ -17,8 +17,7 @@ public class CommonNegativeTests extends BaseTest {
     @Test
     public void givenInValidOperationNameWhenPostRequestThenReturn500Error() {
         Response response = getPostResponse(getDefaultURI(),
-                getInvalidOperationMockData(), getErrorSchema());
-        assertEquals(response.statusCode(), Status.INTERNAL_SERVER_ERROR);
+                getInvalidOperationMockData(), getErrorSchema(), Status.INTERNAL_SERVER_ERROR);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
@@ -30,8 +29,7 @@ public class CommonNegativeTests extends BaseTest {
     @Test
     public void givenInValidBodyQueryWhenPostRequestThenReturn400Error()  {
         Response response = getPostResponse(getDefaultURI(),
-                getInvalidQueryMockData(), getErrorSchema());
-        assertEquals(response.statusCode(), Status.BAD_REQUEST);
+                getInvalidQueryMockData(), getErrorSchema(), Status.BAD_REQUEST);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
@@ -43,8 +41,7 @@ public class CommonNegativeTests extends BaseTest {
     @Test
     public void givenEmptyBodyWhenPostRequestThenReturn400Error()   {
         Response response = getPostResponse(getDefaultURI(),
-                "", getErrorSchema());
-        assertEquals(response.statusCode(), Status.BAD_REQUEST);
+                "", getErrorSchema(), Status.BAD_REQUEST);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 

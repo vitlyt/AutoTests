@@ -18,11 +18,9 @@ public class SearchVacanciesTest extends BaseTest{
     public void givenRequestBodyWhenGetPublishedVacanciesListThenReturn200Error()  {
 
         Response response = getPostResponse("getPublishedVacanciesList", getDefaultURI(),
-                getPublishedVacanciesListMockData(), getPublishedVacanciesListSchema());
+                getPublishedVacanciesListMockData(), getPublishedVacanciesListSchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
-
-        assertEquals(response.statusCode(), Status.OK);
 
         assertFalse(jsonPath.getList("data.publishedVacancies.items").isEmpty(), "data.publishedVacancies is empty");
         assertTrue(jsonPath.getInt("data.publishedVacancies.totalCount") > 0, "data.publishedVacancies.totalCount is less equal than 0");
@@ -33,11 +31,9 @@ public class SearchVacanciesTest extends BaseTest{
     public void givenRequestBodyWhenGetPublishedVacancyThenReturn200Error()  {
 
         Response response = getPostResponse("getPublishedVacancy", getDefaultURI(),
-                getPublishedVacancyMockData(), getPublishedVacancySchema());
+                getPublishedVacancyMockData(), getPublishedVacancySchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
-
-        assertEquals(response.statusCode(), Status.OK);
 
         assertTrue(jsonPath.getInt("data.publishedVacancy.id") > 0, "data.publishedVacancy.id is less equal than 0");
         assertFalse(jsonPath.getString("data.publishedVacancy.title").isEmpty(), "data.publishedVacancy.title is empty");

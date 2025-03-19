@@ -1,12 +1,4 @@
 {
   "operationName": "UpdateSeekerProfResumePortfolios",
-  "variables": {
-    "input": {
-      "portfolios": [
-        "https://test111.com/"
-      ],
-      "resumeId": "$id"  //17383405
-    }
-  },
   "query": "mutation UpdateSeekerProfResumePortfolios($input: ProfResumeUpdatePortfoliosInput!) {\n  updateSeekerProfResumePortfolios(input: $input) {\n    errors {\n      ... on ProfResumeDoesNotExist {\n        message\n        __typename\n      }\n      ... on ProfResumeDoesNotBelongToSeeker {\n        message\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
 }

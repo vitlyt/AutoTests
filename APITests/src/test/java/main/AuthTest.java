@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import static utils.Utils.*;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,9 +28,8 @@ public class AuthTest extends BaseTest{
             put(PASSWORD_FIELD, "password123");
         }};
 
-        Response response = getPostResponse(getLoginURI(), params);
+        Response response = getPostResponse(getLoginURI(), params, BAD_REQUEST);
 
-        assertEquals(response.statusCode(), BAD_REQUEST);
         assertNull(response.getCookie(COOKIE_TOKEN));
 
         assertEquals(response.getBody().jsonPath().getString("\"model.Password\"[0]"),
@@ -42,15 +40,14 @@ public class AuthTest extends BaseTest{
 
 
     @Test
-    public void givenValidCredentialsWhenLoginThenReturn200Error() {
+    public void givenValidCredentialsWhenLoginThenReturn200() {
         Map<String, String> params = new HashMap<>(){{
             put(USERNAME_FIELD, System.getProperty("username"));
             put(PASSWORD_FIELD, System.getProperty("password"));
         }};
 
-        Response response = getPostResponse(getLoginURI(), params);
+        Response response = getPostResponse(getLoginURI(), params, OK);
 
-        assertEquals(response.statusCode(), OK);
         String jwsToken = response.getCookie(COOKIE_TOKEN);
 
         RestAssured.filters(new AuthFilter(jwsToken));
@@ -58,7 +55,7 @@ public class AuthTest extends BaseTest{
 
 
     @Test
-    public void givenWhenLogoutThenReturn204Error()  {
+    public void givenGetRequestWhenLogoutThenReturn204()  {
 
         Response response = given().contentType(ContentType.JSON)
                 .when()
