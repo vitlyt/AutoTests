@@ -1,0 +1,37 @@
+{
+  "similarVacanciesCount":0,
+  "personal":{
+    "photoUrl":"https://cv-photos-original.%s/non-photo.png",
+    "__typename":"ResumePersonalInfo"
+  },
+  "city":{
+    "id":"2",
+    "__typename":"City"
+  },
+  "id":"17383405",
+  "resumeFilling":{
+    "percentage":18,
+    "__typename":"ResumeFilling"
+  },
+  "title":"Монтажник",
+  "views":{
+    "totalCount":2,
+    "__typename":"ResumeViewsConnection"
+  },
+  "updateDate":"2025-01-16T16:59:58.177Z",
+  "state":{
+    "state":"ACTIVE",
+    "availabilityState":"PUBLIC",
+    "isAnonymous":false,
+    "privacySettings":{
+      "hasHiddenPhones":false,
+      "__typename":"ResumePrivacySettings"
+    },
+    "isBannedByModerator":false,
+    "hiddenCompanies":[
+
+    ],
+    "__typename":"ResumeState"
+  },
+  "__typename":"ProfResume"
+}

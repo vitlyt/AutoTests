@@ -1,10 +1,14 @@
 package main;
 
-import data.Resume;
+import dataproviders.ResumeDataProvider;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import mapping.*;
 import org.testng.annotations.Test;
 
+
+import java.util.Arrays;
+import java.util.Map;
 
 import static org.testng.Assert.assertTrue;
 import static utils.Utils.*;
@@ -15,69 +19,50 @@ import static org.testng.Assert.*;
 
 public class SeekerResumesTest extends BaseTest{
 
-    private int id = 0;
+    @Test(dataProvider = "resumes-data-provider", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenGetSeekerResumesThenReturn200(SeekerResume expectedSeekerResume)  {
 
-    private int getId() {
-        return id;
-    }
+        SeekerResume[] seekerResumes = (SeekerResume[])getPostResponse("SeekerResumes", getDefaultURI(),
+                getSeekerResumesMockData(), getSeekerResumesSchema(),
+                Status.OK, SeekerResume[].class, "data.seekerResumes");
 
-    private void setId(int id) {
-        this.id = id;
-    }
+        SeekerResume actualResume = seekerResumes[0];
 
-    @Test
-    public void givenValidUserDataWhenGetSeekerResumesThenReturn200()  {
-
-        Response response = getPostResponse("SeekerResumes", getDefaultURI(),
-                getSeekerResumesMockData(), getSeekerResumesSchema());
-
-        assertEquals(response.statusCode(), Status.OK);
-
-        JsonPath jsonPath = response.getBody().jsonPath();
-
-        assertTrue(jsonPath.getInt("data.seekerResumes[0].similarVacanciesCount") > 0);
-        assertEquals(jsonPath.getString("data.seekerResumes[0].personal.__typename"), "ResumePersonalInfo");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].city.__typename"), "City");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].resumeFilling.__typename"), "ResumeFilling");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].views.__typename"), "ResumeViewsConnection");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].state.privacySettings.__typename"), "ResumePrivacySettings");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].__typename"), "ProfResume");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].state.state"), "ACTIVE");
-        assertEquals(jsonPath.getString("data.seekerResumes[0].state.availabilityState"), "PUBLIC");
-        assertFalse(jsonPath.getBoolean("data.seekerResumes[0].state.isAnonymous"));
-        assertFalse(jsonPath.getBoolean("data.seekerResumes[0].state.privacySettings.hasHiddenPhones"));
-        assertFalse(jsonPath.getBoolean("data.seekerResumes[0].state.isBannedByModerator"));
-        assertTrue(jsonPath.getList("data.seekerResumes[0].state.hiddenCompanies").isEmpty());
+        assertEquals(actualResume, expectedSeekerResume);
 
     }
 
 
     @Test(priority = 0)
     public void givenValidUserDataWhenCreateProfResumeAsCopyThenReturn200()  {
+        Map<String, String> data = getCreateProfResumeAsCopyMockData();
+        ProfResumeRequest createProfResumeAsCopy = new ProfResumeRequest(new Input(data.get("resumeId")),
+               data.get(OPERATION_NAME_PROPERTY), data.get(QUERY_PROPERTY));
 
-        Response response = getPostResponse("CreateProfResumeAsCopy", getDefaultURI(),
-                getCreateProfResumeAsCopyMockData(), getCreateProfResumeAsCopySeekerSchema());
-        assertEquals(response.statusCode(), Status.OK);
+        Response response = getPostResponse(data.get(OPERATION_NAME_PROPERTY), getDefaultURI(),
+                createProfResumeAsCopy, getCreateProfResumeAsCopySeekerSchema(), Status.OK);
 
-        JsonPath jsonPath = response.getBody().jsonPath();
+        JsonPath jsonPath = response.getBody().jsonPath().setRootPath("data.createProfResumeAsCopy");
 
-        assertNull(jsonPath.getString("data.createProfResumeAsCopy.errors"));
-        assertEquals(jsonPath.getString("data.createProfResumeAsCopy.__typename"), "CreatedAsCopyProfResumeOutput");
-        assertEquals(jsonPath.getString("data.createProfResumeAsCopy.profResume.__typename"), "ProfResume");
-        assertTrue(matchesDigitGT0Format(jsonPath.getInt("data.createProfResumeAsCopy.profResume.id")));
-
-        setId(jsonPath.getInt("data.createProfResumeAsCopy.profResume.id"));
-
-
+        assertNull(jsonPath.getString("errors"));
+        assertEquals(jsonPath.getString("__typename"), "CreatedAsCopyProfResumeOutput");
+        jsonPath.setRootPath("data.createProfResumeAsCopy.profResume");
+        assertEquals(jsonPath.getString("__typename"), "ProfResume");
+        assertTrue(matchesDigitGT0Format(jsonPath.getInt("id")));
+        ResumeDataProvider.setId(jsonPath.getInt("id"));
     }
 
 
-    @Test(priority = 1, dataProvider = "resume-data-provider", dataProviderClass = Resume.class)
-    public void givenValidUserDataWhenUpdateSeekerProfResumePositionThenReturn200(Resume resume)  {
+    @Test(priority = 1, dataProvider = "resume-data-provider", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenUpdateSeekerProfResumePositionThenReturn200(DetailedSeekerResume seekerResume, Integer id)  {
+        Map<String, String> data = getUpdateSeekerProfResumePositionMockData();
+        UpdateSeekerProfResumePositionRequest updateSeekerProfResumePosition = new UpdateSeekerProfResumePositionRequest(
+                new UpdateSeekerProfResumePositionRequest.PositionInput(String.valueOf(id), seekerResume.getTitle()),
+                data.get(OPERATION_NAME_PROPERTY), data.get(QUERY_PROPERTY)
+        );
 
-        Response response = getPostResponse("UpdateSeekerProfResumePosition", getDefaultURI(),
-                getUpdateSeekerProfResumePositionMockData(getId(), resume.getPosition()), getUpdateSeekerProfResumePositionSchema());
-        assertEquals(response.statusCode(), Status.OK);
+        Response response = getPostResponse(data.get(OPERATION_NAME_PROPERTY), getDefaultURI(),
+                updateSeekerProfResumePosition, getUpdateSeekerProfResumePositionSchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
@@ -86,87 +71,63 @@ public class SeekerResumesTest extends BaseTest{
 
     }
 
-    @Test(priority = 2, dataProvider = "resume-data-provider", dataProviderClass = Resume.class)
-    public void givenValidUserDataWhenUpdateSeekerProfResumeScheduleThenReturn200(Resume resume)  {
+    @Test(priority = 2, dataProvider = "resume-data-provider", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenUpdateSeekerProfResumeScheduleThenReturn200(DetailedSeekerResume seekerResume, Integer id)  {
+        Map<String, String> data = getUpdateSeekerProfResumeScheduleMockData();
+        UpdateSeekerProfResumeScheduleRequest updateSeekerProfResumeSchedule = new UpdateSeekerProfResumeScheduleRequest(
+                new UpdateSeekerProfResumeScheduleRequest.SchedulesInput(String.valueOf(id),
+                        Arrays.asList(seekerResume.getSchedules().get(0).getId(), seekerResume.getSchedules().get(1).getId())),
+                data.get(OPERATION_NAME_PROPERTY),
+                data.get(QUERY_PROPERTY)
 
-        Response response = getPostResponse("UpdateSeekerProfResumeSchedule", getDefaultURI(),
-                getUpdateSeekerProfResumeScheduleMockData(getId(), resume.getScheduleId1(), resume.getScheduleId2()), getUpdateSeekerProfResumeScheduleSchema());
+        );
 
-        assertEquals(response.statusCode(), Status.OK);
+        Response response = getPostResponse(data.get(OPERATION_NAME_PROPERTY), getDefaultURI(),
+                updateSeekerProfResumeSchedule, getUpdateSeekerProfResumeScheduleSchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
         assertNull(jsonPath.getString("data.updateSeekerProfResumeSchedule.errors"));
         assertEquals(jsonPath.getString("data.updateSeekerProfResumeSchedule.__typename"), "UpdatedProfResumeScheduleOutput");
 
-
     }
 
-    @Test(priority = 3, dataProvider = "resume-data-provider", dataProviderClass = Resume.class)
-    public void givenValidUserDataWhenUpdateSeekerProfResumeSalaryThenReturn200(Resume resume) {
+    @Test(priority = 3, dataProvider = "resume-data-provider", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenUpdateSeekerProfResumeSalaryThenReturn200(DetailedSeekerResume seekerResume, Integer id) {
+        Map<String, String> data = getUpdateSeekerProfResumeSalaryMockData();
+        UpdateSeekerProfResumeSalaryRequest updateSeekerProfResumeSalary = new UpdateSeekerProfResumeSalaryRequest(
+                new UpdateSeekerProfResumeSalaryRequest.SalaryInput(String.valueOf(id),
+                        new UpdateSeekerProfResumeSalaryRequest.SalaryInput.Salary(seekerResume.getSalary().getAmount(),
+                                seekerResume.getSalary().getCurrency())),
+                data.get(OPERATION_NAME_PROPERTY),
+                data.get(QUERY_PROPERTY)
 
-        Response response = getPostResponse("UpdateSeekerProfResumeSalary", getDefaultURI(),
-                getUpdateSeekerProfResumeSalaryMockData(getId(), resume.getSalary(), resume.getCurrency()), getUpdateSeekerProfResumeSalarySchema());
+        );
 
-        assertEquals(response.statusCode(), Status.OK);
+        Response response = getPostResponse(data.get(OPERATION_NAME_PROPERTY), getDefaultURI(),
+                updateSeekerProfResumeSalary, getUpdateSeekerProfResumeSalarySchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
         assertNull(jsonPath.getString("data.updateSeekerProfResumeSalary.errors"));
         assertEquals(jsonPath.getString("data.updateSeekerProfResumeSalary.__typename"), "UpdatedProfResumeSalaryOutput");
 
-
     }
 
 
-    @Test(priority = 4, dataProvider = "resume-data-provider", dataProviderClass = Resume.class)
-    public void givenValidUserDataWhenGetSeekerResumeThenReturn200(Resume resume) {
+    @Test(priority = 4, dataProvider = "resume-data-provider", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenGetSeekerResumeThenReturn200(DetailedSeekerResume expectedSeekerResume, Integer id) {
+        DetailedSeekerResume actualSeekerResume = (DetailedSeekerResume)getPostResponse("SeekerResume", getDefaultURI(),
+                getSeekerResumeMockData(id), getSeekerResumeSchema(),
+                Status.OK, DetailedSeekerResume.class, "data.seekerResume");
 
-
-        Response response = getPostResponse("SeekerResume", getDefaultURI(),
-                getSeekerResumeMockData(getId()), getSeekerResumeSchema());
-        assertEquals(response.statusCode(), Status.OK);
-
-        JsonPath jsonPath = response.getBody().jsonPath();
-
-
-        assertTrue(matchesDateFormat(jsonPath.getString("data.seekerResume.personal.birthDate")));
-        assertTrue(jsonPath.getInt("data.seekerResume.personal.age") > 0);
-        assertEquals(jsonPath.getString("data.seekerResume.personal.gender"), "MALE");
-        assertEquals(jsonPath.getString("data.seekerResume.personal.photoUrl"), getPhotoURL());
-
-        assertEquals(jsonPath.getString("data.seekerResume.contacts.phone.__typename"), "ResumePhone");
-        assertTrue(matchesEmailFormat(jsonPath.getString("data.seekerResume.contacts.email")));
-        assertTrue(matchesPhoneNumberFormat(jsonPath.getString("data.seekerResume.contacts.phone.value")));
-        assertTrue(jsonPath.getBoolean("data.seekerResume.contacts.phone.isConfirmed"));
-        assertEquals(jsonPath.getString("data.seekerResume.title"), resume.getPosition());
-        assertEquals(jsonPath.getString("data.seekerResume.state.state"), "NOT_CREATED");
-        assertEquals(jsonPath.getString("data.seekerResume.state.availabilityState"), "HIDE");
-        assertNull(jsonPath.getString("data.seekerResume.state.banInfo.banReason"));
-        assertEquals(jsonPath.getString("data.seekerResume.state.searchState"), "ACTIVE");
-        assertFalse(jsonPath.getBoolean("data.seekerResume.state.isAllowedToShareWithPartners"));
-        assertFalse(jsonPath.getBoolean("data.seekerResume.state.privacySettings.hasHiddenPhones"));
-        assertTrue(jsonPath.getString("data.seekerResume.skills").isEmpty());
-
-        assertEquals(jsonPath.getList("data.seekerResume.schedules").size(), 2);
-        assertEquals(jsonPath.getString("data.seekerResume.schedules[0].id"), String.valueOf(resume.getScheduleId1()));
-        assertEquals(jsonPath.getString("data.seekerResume.schedules[1].id"), String.valueOf(resume.getScheduleId2()));
-
-        assertEquals(jsonPath.getInt("data.seekerResume.salary.amount"), resume.getSalary());
-        assertEquals(jsonPath.getString("data.seekerResume.salary.currency"), resume.getCurrency());
-
-        assertFalse(jsonPath.getBoolean("data.seekerResume.state.isAnonymous"));
-        assertTrue(jsonPath.getList("data.seekerResume.state.hiddenCompanies").isEmpty());
-
+        assertEquals(actualSeekerResume, expectedSeekerResume);
     }
 
     @Test
     public void givenInvalidUserDataWhenGetSeekerResumeThenReturnError() {
-
-
         Response response = getPostResponse("SeekerResume", getDefaultURI(),
-                getSeekerResumeMockData(0), getInvalidUserDataSeekerResumeSchema());
-        assertEquals(response.statusCode(), Status.OK);
+                getSeekerResumeMockData(0), getInvalidUserDataSeekerResumeSchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
@@ -177,14 +138,13 @@ public class SeekerResumesTest extends BaseTest{
     }
 
 
-    @Test(priority = 5)
-    public void givenValidUserDataWhenDeleteSeekerProfResumeThenReturn200()  {
-
-        Response response = getPostResponse("DeleteSeekerProfResume", getDefaultURI(),
-                getDeleteSeekerProfResumeMockData(getId()), getDeleteSeekerProfResumeSchema());
-
-        assertEquals(response.statusCode(), Status.OK);
-
+    @Test(priority = 5, dataProvider = "resume-data-provider-id", dataProviderClass = ResumeDataProvider.class)
+    public void givenValidUserDataWhenDeleteSeekerProfResumeThenReturn200(Integer id)  {
+        Map<String, String> data = getDeleteSeekerProfResumeMockData();
+        ProfResumeRequest deleteProfResume = new ProfResumeRequest(new Input(String.valueOf(id)),
+        data.get(OPERATION_NAME_PROPERTY), data.get(QUERY_PROPERTY));
+        Response response = getPostResponse(data.get(OPERATION_NAME_PROPERTY), getDefaultURI(),
+                deleteProfResume, getDeleteSeekerProfResumeSchema(), Status.OK);
         JsonPath jsonPath = response.getBody().jsonPath();
 
         assertNull(jsonPath.getString("data.deleteSeekerProfResume.errors"));
@@ -192,20 +152,20 @@ public class SeekerResumesTest extends BaseTest{
 
     }
 
-    @Test(priority = 6)
-    public void givenInvalidUserDataWhenDeleteSeekerProfResumeThenReturn200() {
+    @Test(priority = 6, dataProvider = "resume-data-provider-id", dataProviderClass = ResumeDataProvider.class)
+    public void givenInvalidUserDataWhenDeleteSeekerProfResumeThenReturn200(Integer id) {
+
+        Map<String, String> data = getDeleteSeekerProfResumeMockData();
+        ProfResumeRequest deleteProfResume = new ProfResumeRequest(new Input(String.valueOf(id)),
+                data.get(OPERATION_NAME_PROPERTY), data.get(QUERY_PROPERTY));
 
         Response response = getPostResponse("DeleteSeekerProfResume", getDefaultURI(),
-                getDeleteSeekerProfResumeMockData(getId()), getDeleteSeekerProfResumeSchema());
-        assertEquals(response.statusCode(), Status.OK);
+                deleteProfResume, getDeleteSeekerProfResumeSchema(), Status.OK);
 
         JsonPath jsonPath = response.getBody().jsonPath();
 
         assertEquals(jsonPath.getString("data.deleteSeekerProfResume.errors[0].__typename"), "ProfResumeDoesNotExist");
 
     }
-
-
-
 
 }

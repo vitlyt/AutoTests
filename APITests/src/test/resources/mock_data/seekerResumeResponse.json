@@ -1,0 +1,110 @@
+{
+      "personal":{
+        "surName":"Литвин",
+        "photoUrl":"https://cv-photos-original.%s/non-photo.png",
+        "gender":"MALE",
+        "firstName":"Виталий",
+        "fatherName":"",
+        "birthDate":"1987-02-27",
+        "age":38,
+        "__typename":"ResumePersonalInfo"
+      },
+      "relocationCities":[
+
+      ],
+      "city":{
+        "ua":"Львів",
+        "ru":"Львов",
+        "regionName":"Львівська область",
+        "name":"Львів",
+        "id":"2",
+        "__typename":"City"
+      },
+      "cityDistricts":[
+
+      ],
+      "contacts":{
+        "email":"test@test.com",
+        "phone":{
+          "isConfirmed":true,
+          "value":"380123456789",
+          "__typename":"ResumePhone"
+        },
+        "phones":[
+
+        ],
+        "portfolios":[
+          "https://test111.com/"
+        ],
+        "socials":[
+
+        ],
+        "__typename":"ResumeContactInfo"
+      },
+      "schedules":[
+        {
+          "name":"повна зайнятість",
+          "id":"1",
+          "__typename":"Schedule"
+        },
+        {
+          "name":"стажування / практика",
+          "id":"4",
+          "__typename":"Schedule"
+        }
+      ],
+      "salary":{
+        "currency":"UAH",
+        "amount":15000,
+        "__typename":"ResumeSalary"
+      },
+      "title":"Кухар",
+      "__typename":"ProfResume",
+      "experiences":[
+
+      ],
+      "educations":[
+        {
+          "yearOfGraduation":2009,
+          "speciality":"економічна кібернетика",
+          "location":"Львов",
+          "level":"HIGHER",
+          "institutionTitle":"ЛКА",
+          "id":"14697120",
+          "importSource":null,
+          "__typename":"ResumeEducation"
+        }
+      ],
+      "languageSkills":[
+
+      ],
+      "additionalEducations":[
+
+      ],
+      "additionals":[
+
+      ],
+      "updateDate":"2025-03-14T14:48:40.877Z",
+      "state":{
+        "state":"NOT_CREATED",
+        "availabilityState":"HIDE",
+        "banInfo":{
+          "banReason":null,
+          "__typename":"BanInfo"
+        },
+        "hiddenCompanies":[
+
+        ],
+        "searchState":"ACTIVE",
+        "isAnonymous":false,
+        "isAllowedToShareWithPartners":false,
+        "privacySettings":{
+          "hasHiddenPhones":false,
+          "__typename":"ResumePrivacySettings"
+        },
+        "__typename":"ResumeState"
+      },
+      "skills":"",
+      "diiaCertificate":null,
+      "resumeFilling":null
+  }

@@ -9,7 +9,12 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 
+import static utils.Utils.*;
+
 public class MockDataProvider {
+
+    public static final String OPERATION_NAME_PROPERTY = "operationName";
+    public static final String QUERY_PROPERTY = "query";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MockDataProvider.class);
 
@@ -25,6 +30,16 @@ public class MockDataProvider {
         return result;
 
     }
+
+    private static Map<String, String> getMockDataMap(String fileName) {
+        return loadJsonData("mock_data/".concat(fileName));
+    }
+
+    public static Object getMockDataObject(String fileName, Class clazz) {
+        return loadJson("mock_data/".concat(fileName), clazz);
+
+    }
+
 
     private static String getMockData(String fileName, String var, String value) {
         return getMockData(fileName).replace(var, value);
@@ -63,31 +78,27 @@ public class MockDataProvider {
         return getMockData("invalidQuery");
     }
 
-    public static String getDeleteSeekerProfResumeMockData(int id)  {
-        return getMockData("deleteSeekerProfResume", "$id", String.valueOf(id));
+    public static Map<String, String>  getDeleteSeekerProfResumeMockData( ) {
+        return getMockDataMap("deleteSeekerProfResume");
     }
 
-    public static String getUpdateSeekerProfResumePortfoliosMockData(int id)  {
-        return getMockData("updateSeekerProfResumePortfolios", "$id", String.valueOf(id));
+    public static Map<String, String>  getUpdateSeekerProfResumePortfoliosMockData()  {
+        return getMockDataMap("updateSeekerProfResumePortfolios");
     }
 
-    public static String getUpdateSeekerProfResumePositionMockData(int id, String position)  {
-        return getMockData("updateSeekerProfResumePosition", Map.of("$id",String.valueOf(id),
-                "$position", position));
+    public static Map<String, String> getUpdateSeekerProfResumePositionMockData() {
+        return getMockDataMap("updateSeekerProfResumePosition");
     }
 
-    public static String getUpdateSeekerProfResumeScheduleMockData(int id, int schedule1, int schedule2)  {
-
-        return getMockData("updateSeekerProfResumeSchedule", Map.of("$id", String.valueOf(id),
-                "$scheduleId1", String.valueOf(schedule1), "$scheduleId2", String.valueOf(schedule2)));
+    public static Map<String, String> getUpdateSeekerProfResumeScheduleMockData() {
+        return getMockDataMap("updateSeekerProfResumeSchedule");
     }
 
-    public static String getUpdateSeekerProfResumeSalaryMockData(int id, int salary, String currency) {
-        return getMockData("updateSeekerProfResumeSalary", Map.of("$id", String.valueOf(id),
-                "$salary", String.valueOf(salary), "$currency", currency));
+    public static Map<String, String> getUpdateSeekerProfResumeSalaryMockData() {
+        return getMockDataMap("updateSeekerProfResumeSalary");
     }
 
-    public static String getCreateProfResumeAsCopyMockData()  {
-        return getMockData("createProfResumeAsCopy");
+    public static Map<String, String> getCreateProfResumeAsCopyMockData() {
+        return getMockDataMap("createProfResumeAsCopy");
     }
 }
