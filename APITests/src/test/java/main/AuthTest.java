@@ -1,13 +1,13 @@
 package main;
 
 import conf.AuthFilter;
+import dataproviders.AuthDataProvider;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import static utils.Utils.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -17,16 +17,11 @@ import static utils.HTTP.Status.*;
 
 public class AuthTest extends BaseTest{
 
-    private static final String USERNAME_FIELD = "username";
-    private static final String PASSWORD_FIELD = "password";
+
     private static final String COOKIE_TOKEN = "jwt-token";
 
-    @Test
-    public void givenInvalidCredentialsWhenLoginThenReturn400Error(){
-        Map<String, String> params = new HashMap<>(){{
-            put(USERNAME_FIELD, "nonexistent@test.com");
-            put(PASSWORD_FIELD, "password123");
-        }};
+    @Test(dataProvider = "invalid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
+    public void givenInvalidCredentialsWhenLoginThenReturn400Error(Map<String, String> params){
 
         Response response = getPostResponse(getLoginURI(), params, BAD_REQUEST);
 
@@ -39,12 +34,8 @@ public class AuthTest extends BaseTest{
     }
 
 
-    @Test
-    public void givenValidCredentialsWhenLoginThenReturn200() {
-        Map<String, String> params = new HashMap<>(){{
-            put(USERNAME_FIELD, System.getProperty("username"));
-            put(PASSWORD_FIELD, System.getProperty("password"));
-        }};
+    @Test(dataProvider = "valid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
+    public void givenValidCredentialsWhenLoginThenReturn200(Map<String, String> params) {
 
         Response response = getPostResponse(getLoginURI(), params, OK);
 
