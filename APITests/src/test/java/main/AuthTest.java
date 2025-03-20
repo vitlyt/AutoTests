@@ -10,7 +10,6 @@ import static utils.Utils.*;
 
 import java.util.Map;
 
-
 import static org.testng.Assert.*;
 import static io.restassured.RestAssured.*;
 import static utils.HTTP.Status.*;
