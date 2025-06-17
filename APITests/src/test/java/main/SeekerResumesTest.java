@@ -126,7 +126,6 @@ public class SeekerResumesTest extends BaseTest{
 
     @Test
     public void givenInvalidUserDataWhenGetSeekerResumeThenReturnError() {
-
         Response response = getPostResponse("SeekerResume", getDefaultURI(),
                 getSeekerResumeMockData(0), getInvalidUserDataSeekerResumeSchema(), Status.OK);
 
