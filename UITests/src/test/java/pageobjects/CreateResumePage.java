@@ -11,8 +11,8 @@ public class CreateResumePage extends BasePage {
 
     private static final String URI_PATTERN = "/my/resumes/\\d+";
     private final By CV_BUILDER_LOCATOR = By.tagName("alliance-cv-builder-page");
-    private final By DESIRED_POSITION_INPUT = By.xpath("//label[contains(text(), 'Ким хочете працювати')]/ancestor::div[@class='outline']/preceding-sibling::input");
-    private final By DESIRED_SALARY_INPUT = By.xpath("//label[contains(text(), 'Скільки хочете заробляти')]/ancestor::div[@class='outline']/preceding-sibling::input");
+    private final By DESIRED_POSITION_INPUT = By.xpath("//santa-input/div/label[contains(text(), 'Ким хочете працювати')]/preceding-sibling::input");
+    private final By DESIRED_SALARY_INPUT = By.xpath("//santa-input/div/label[contains(text(), 'Скільки хочете заробляти')]/preceding-sibling::input");
 
     private final By DESIRED_EMPLOYMENT_TYPE_INPUTS = By.xpath("//h3[contains(text(), 'Тип зайнятості')]/following-sibling::lib-cv-schedules//santa-checkbox");
     private final By DESIRED_EMPLOYMENT_TYPE_INPUT = By.xpath(".//input[@type='checkbox']");

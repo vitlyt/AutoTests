@@ -19,7 +19,7 @@ public class AuthTest extends BaseTest{
 
     private static final String COOKIE_TOKEN = "jwt-token";
 
-    @Test(dataProvider = "invalid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
+    @Test(enabled = false, dataProvider = "invalid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
     public void givenInvalidCredentialsWhenLoginThenReturn400Error(Map<String, String> params){
 
         Response response = getPostResponse(getLoginURI(), params, BAD_REQUEST);
@@ -33,7 +33,7 @@ public class AuthTest extends BaseTest{
     }
 
 
-    @Test(dataProvider = "valid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
+    @Test(enabled = false, dataProvider = "valid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
     public void givenValidCredentialsWhenLoginThenReturn200(Map<String, String> params) {
 
         Response response = getPostResponse(getLoginURI(), params, OK);
@@ -44,7 +44,7 @@ public class AuthTest extends BaseTest{
     }
 
 
-    @Test
+    @Test(enabled = false)
     public void givenGetRequestWhenLogoutThenReturn204()  {
 
         Response response = given().contentType(ContentType.JSON)

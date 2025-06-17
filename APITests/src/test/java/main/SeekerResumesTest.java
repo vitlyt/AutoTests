@@ -1,6 +1,8 @@
 package main;
 
+import conf.AuthFilter;
 import dataproviders.ResumeDataProvider;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import mapping.*;
@@ -126,6 +128,7 @@ public class SeekerResumesTest extends BaseTest{
 
     @Test
     public void givenInvalidUserDataWhenGetSeekerResumeThenReturnError() {
+
         Response response = getPostResponse("SeekerResume", getDefaultURI(),
                 getSeekerResumeMockData(0), getInvalidUserDataSeekerResumeSchema(), Status.OK);
 
