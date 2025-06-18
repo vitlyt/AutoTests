@@ -26,7 +26,6 @@ public class LoginTest extends BaseTest {
             assertTrue(page instanceof RecommendationsPage && page.isLoaded());
         else
             assertEquals(loginPage.getErrorText(), "Ви ввели невірний пароль або логін");
-
     }
 
     @Override
