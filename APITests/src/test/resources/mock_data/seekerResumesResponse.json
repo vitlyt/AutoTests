@@ -10,7 +10,7 @@
   },
   "id":"17383405",
   "resumeFilling":{
-    "percentage":18,
+    "percentage":21,
     "__typename":"ResumeFilling"
   },
   "title":"Монтажник",
@@ -18,9 +18,9 @@
     "totalCount":2,
     "__typename":"ResumeViewsConnection"
   },
-  "updateDate":"2025-01-16T16:59:58.177Z",
+  "updateDate":"2025-03-19T11:00:16.470Z",
   "state":{
-    "state":"ACTIVE",
+    "state":"HIDE",
     "availabilityState":"PUBLIC",
     "isAnonymous":false,
     "privacySettings":{

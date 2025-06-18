@@ -37,7 +37,7 @@ public class DetailedSeekerResume {
         DetailedSeekerResume that = (DetailedSeekerResume) o;
         return Objects.equals(title, that.title) && Objects.equals(personal, that.personal) && Objects.equals(contacts, that.contacts) &&
                 Objects.equals(state, that.state) && Objects.equals(skills, that.skills) &&
-                Objects.equals(diiaCertificate, that.diiaCertificate) && Objects.equals(resumeFilling, that.resumeFilling) &&
+                Objects.equals(diiaCertificate, that.diiaCertificate) &&
                 Objects.equals(salary, that.salary) && Objects.equals(schedules, that.schedules) && Objects.equals(city, that.city) &&
                 Objects.equals(educations, that.educations) && matchesDateTimeFormat(updateDate) && matchesDateTimeFormat(that.updateDate) &&
                 Objects.equals(relocationCities, that.relocationCities) && Objects.equals(cityDistricts, that.cityDistricts) &&

@@ -18,18 +18,14 @@ public class LoginTest extends BaseTest {
         loginPage = new LoginPage();
     }
 
-    @Test(priority = 0, dataProvider = "invalid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
-    public void testLoginFailed(Map<String, String> params){
-        loginPage.login(params.get(AuthDataProvider.USERNAME_FIELD), AuthDataProvider.PASSWORD_FIELD);
-        assertEquals(loginPage.getErrorText(), "Ви ввели невірний пароль або логін");
-    }
+    @Test(dataProvider = "auth-data-provider", dataProviderClass = AuthDataProvider.class)
+    public void testLogin(Map<String, String> params){
+        BasePage page = loginPage.login(params.get(AuthDataProvider.USERNAME_FIELD), params.get(AuthDataProvider.PASSWORD_FIELD));
 
-
-    @Test(priority = 1, dataProvider = "valid-auth-data-provider", dataProviderClass = AuthDataProvider.class)
-    public void testLoginSucceeded(Map<String, String> params){
-        loginPage.reload();
-        BasePage page = loginPage.login(params.get(AuthDataProvider.USERNAME_FIELD), AuthDataProvider.PASSWORD_FIELD);
-        assertTrue(page instanceof RecommendationsPage && page.isLoaded());
+        if(Boolean.parseBoolean(params.get(AuthDataProvider.IS_VALID_FIELD)))
+            assertTrue(page instanceof RecommendationsPage && page.isLoaded());
+        else
+            assertEquals(loginPage.getErrorText(), "Ви ввели невірний пароль або логін");
     }
 
     @Override
